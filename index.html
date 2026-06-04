@@ -6,61 +6,45 @@
 <title>Rạp Phim Của Chip Và Phụng</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#080b12;--bg2:#0d1220;--bg3:#131928;--gold:#f5c842;--gold2:#e8a800;--red:#e8304a;--green:#22c55e;--text:#eef2ff;--muted:#8896b0;--border:rgba(255,255,255,0.07);--card:rgba(255,255,255,0.04)}
+:root{
+  --bg:#080b12;--bg2:#0d1220;--bg3:#131928;
+  --gold:#f5c842;--gold2:#e8a800;--red:#e8304a;--green:#22c55e;
+  --text:#eef2ff;--muted:#8896b0;--border:rgba(255,255,255,0.07);--card:rgba(255,255,255,0.04);
+  --modal-max:560px;
+  --radius-modal:20px;
+  --input-bg:rgba(255,255,255,0.06);
+  --input-border:rgba(255,255,255,0.1);
+  --input-focus:rgba(245,200,66,0.45);
+}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--gold2);border-radius:3px}
 
 /* =================== NAV =================== */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 16px;height:56px;
-  background:rgba(8,11,18,0.95);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border)
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:56px;background:rgba(8,11,18,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
 .logo{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;color:var(--gold);cursor:pointer;flex-shrink:0}
 .logo span{color:var(--red)}
 .nav-links{display:none}
 .nav-right{display:flex;gap:8px;align-items:center}
-
-/* Mobile search - compact */
 .search-wrap{position:relative;display:flex;align-items:center}
 .search-icon{position:absolute;left:10px;color:var(--muted);font-size:13px;pointer-events:none}
-.search-input{
-  background:rgba(255,255,255,.07);border:1px solid var(--border);border-radius:20px;
-  padding:7px 13px 7px 30px;color:var(--text);font-size:13px;
-  width:130px;transition:.3s;font-family:'DM Sans',sans-serif;outline:none
-}
+.search-input{background:rgba(255,255,255,.07);border:1px solid var(--border);border-radius:20px;padding:7px 13px 7px 30px;color:var(--text);font-size:13px;width:130px;transition:.3s;font-family:'DM Sans',sans-serif;outline:none}
 .search-input:focus{width:160px;border-color:rgba(245,200,66,.4)}
 .search-input::placeholder{color:var(--muted)}
-
 .cart-btn{position:relative;background:none;border:none;cursor:pointer;color:var(--muted);font-size:18px;padding:4px 2px;transition:.2s}
 .cart-btn:hover{color:var(--gold)}
 .cart-badge{position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;font-size:9px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
-
 .btn-nav{padding:7px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;font-weight:600;white-space:nowrap}
 .btn-login{background:transparent;border:1px solid rgba(245,200,66,.4);color:var(--gold)}
 .btn-signup{background:var(--gold);border:none;color:#000;font-weight:700}
-
 .user-nav{display:flex;align-items:center;gap:7px;cursor:pointer;padding:4px 8px;border-radius:20px;transition:.2s;background:rgba(255,255,255,.05)}
 .user-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--red));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#000;flex-shrink:0}
 .user-name-nav{font-size:12px;font-weight:600;max-width:70px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
 /* =================== BOTTOM NAV =================== */
-.bottom-nav{
-  position:fixed;bottom:0;left:0;right:0;z-index:900;
-  background:rgba(8,11,18,.97);border-top:1px solid var(--border);
-  display:flex;justify-content:space-around;align-items:center;
-  height:58px;padding-bottom:env(safe-area-inset-bottom);
-  backdrop-filter:blur(20px)
-}
-.bnav-item{
-  display:flex;flex-direction:column;align-items:center;gap:3px;
-  cursor:pointer;padding:6px 10px;border-radius:10px;transition:.2s;
-  flex:1;
-}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:900;background:rgba(8,11,18,.97);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;height:58px;padding-bottom:env(safe-area-inset-bottom);backdrop-filter:blur(20px)}
+.bnav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px 10px;border-radius:10px;transition:.2s;flex:1}
 .bnav-item:active{background:rgba(255,255,255,.05)}
 .bnav-icon{font-size:18px;line-height:1}
 .bnav-label{font-size:9px;color:var(--muted);font-weight:500;letter-spacing:.3px}
@@ -69,10 +53,7 @@ nav{
 
 /* =================== HERO =================== */
 #home{padding-top:56px}
-.hero{
-  position:relative;min-height:440px;overflow:hidden;
-  display:flex;align-items:flex-end;
-}
+.hero{position:relative;min-height:440px;overflow:hidden;display:flex;align-items:flex-end}
 .hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#0a0e1a,#1a1030,#0e0a1a)}
 .hero-particles{position:absolute;inset:0;overflow:hidden}
 .hero-particles::before{content:'';position:absolute;width:300px;height:300px;background:radial-gradient(circle,#f5c84233,transparent 70%);top:-80px;right:-60px;border-radius:50%}
@@ -81,23 +62,14 @@ nav{
 .hero-film img{width:100%;height:100%;object-fit:cover;opacity:.2}
 .hero-film::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 0%,rgba(8,11,18,.6) 50%,rgba(8,11,18,.3) 100%)}
 .hero-content{position:relative;z-index:2;padding:28px 18px 32px;width:100%}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:5px;
-  background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.3);
-  border-radius:20px;padding:4px 12px;font-size:10px;color:var(--gold);
-  font-weight:600;letter-spacing:.8px;margin-bottom:12px
-}
+.hero-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.3);border-radius:20px;padding:4px 12px;font-size:10px;color:var(--gold);font-weight:600;letter-spacing:.8px;margin-bottom:12px}
 .hero-badge::before{content:'●';font-size:7px;animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .hero h1{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:.95;letter-spacing:1px;margin-bottom:10px}
 .hero h1 span{color:var(--gold)}
 .hero p{color:var(--muted);font-size:13px;line-height:1.6;margin-bottom:20px;max-width:320px}
 .hero-btns{display:flex;gap:10px;flex-wrap:wrap}
-
-/* hero stats strip */
-.hero-stats-strip{
-  display:flex;background:rgba(255,255,255,.04);border-top:1px solid var(--border);
-}
+.hero-stats-strip{display:flex;background:rgba(255,255,255,.04);border-top:1px solid var(--border)}
 .hero-stat-item{flex:1;padding:14px 8px;text-align:center;border-right:1px solid var(--border)}
 .hero-stat-item:last-child{border-right:none}
 .stat-num{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--gold);line-height:1}
@@ -105,8 +77,8 @@ nav{
 
 /* =================== BUTTONS =================== */
 .btn-primary{padding:11px 22px;background:var(--gold);color:#000;border:none;border-radius:22px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:6px}
-.btn-primary:hover{background:var(--gold2)}
-.btn-primary:disabled{opacity:.4;cursor:not-allowed}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-1px)}
+.btn-primary:disabled{opacity:.4;cursor:not-allowed;transform:none}
 .btn-outline{padding:11px 22px;background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.2);border-radius:22px;font-size:13px;font-weight:500;cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:6px}
 .btn-outline:hover{border-color:rgba(255,255,255,.4)}
 .btn-danger{background:var(--red);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif}
@@ -118,17 +90,14 @@ section{padding:28px 16px 32px}
 .section-title span{color:var(--gold)}
 .section-sub{font-size:11px;color:var(--muted);margin-top:3px}
 .see-all{color:var(--gold);font-size:12px;cursor:pointer;display:flex;align-items:center;gap:3px;white-space:nowrap;flex-shrink:0}
-
-/* =================== FILTER TABS - SCROLLABLE =================== */
 .filter-tabs-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -16px;padding:0 16px 10px;scrollbar-width:none}
 .filter-tabs-wrap::-webkit-scrollbar{display:none}
 .filter-tabs{display:flex;gap:7px;width:max-content}
 .tab{padding:6px 16px;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--muted);font-size:12px;cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0}
 .tab.active{background:var(--gold);border-color:var(--gold);color:#000;font-weight:700}
 
-/* =================== MOVIE GRID - 2 COLUMNS MOBILE =================== */
+/* =================== MOVIE GRID =================== */
 .movies-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-
 .movie-card{border-radius:10px;overflow:hidden;background:var(--bg3);border:1px solid var(--border);cursor:pointer;transition:.3s;position:relative}
 .movie-card:active{transform:scale(.98)}
 .movie-poster{position:relative;aspect-ratio:2/3;overflow:hidden}
@@ -193,11 +162,7 @@ section{padding:28px 16px 32px}
 .promo-code-btn{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;color:var(--gold);background:rgba(245,200,66,.1);border:1px dashed rgba(245,200,66,.4);padding:4px 9px;border-radius:5px;display:inline-block;cursor:pointer;align-self:flex-start}
 
 /* =================== WATCH ONLINE =================== */
-.watch-hero{
-  background:linear-gradient(135deg,#0d1220,#1a0d2e);border:1px solid var(--border);
-  border-radius:14px;padding:20px;margin-bottom:24px;
-  display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden
-}
+.watch-hero{background:linear-gradient(135deg,#0d1220,#1a0d2e);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:24px;display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden}
 .watch-hero::before{content:'';position:absolute;right:-80px;top:-80px;width:250px;height:250px;background:radial-gradient(circle,rgba(245,200,66,.08),transparent 70%);pointer-events:none}
 .watch-hero-img{width:100%;max-width:240px;border-radius:10px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.5);align-self:center}
 .watch-hero-img img{width:100%;display:block}
@@ -205,7 +170,6 @@ section{padding:28px 16px 32px}
 .watch-hero-text h2 span{color:var(--gold)}
 .watch-hero-text p{color:var(--muted);font-size:13px;line-height:1.6;margin-bottom:16px}
 .watch-hero-btns{display:flex;gap:9px;flex-wrap:wrap}
-
 .vod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .vod-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:.2s;position:relative}
 .vod-card:active{transform:scale(.98)}
@@ -260,31 +224,254 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px 16p
 .footer-col ul li a{font-size:12px;color:var(--muted);text-decoration:none;cursor:pointer}
 .footer-bottom{background:var(--bg);border-top:1px solid var(--border);padding:12px 16px;text-align:center;font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:3px}
 
-/* =================== MODALS =================== */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:2000;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:.3s;backdrop-filter:blur(8px)}
-.modal-overlay.open{opacity:1;pointer-events:all}
-.modal{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:20px 20px 0 0;width:100%;max-width:520px;
-  max-height:92vh;overflow-y:auto;
-  animation:slideUpModal .3s ease
-}
-@keyframes slideUpModal{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.modal-handle{width:36px;height:4px;background:rgba(255,255,255,.15);border-radius:2px;margin:12px auto 0}
-.modal-header{padding:16px 20px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--bg2);z-index:5;border-radius:20px 20px 0 0}
-.modal-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px}
-.modal-close{background:rgba(255,255,255,.07);border:none;color:var(--muted);font-size:14px;cursor:pointer;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:.2s}
-.modal-close:hover{background:rgba(255,255,255,.12);color:var(--text)}
-.modal-body{padding:18px 20px}
-.modal-footer{border-top:1px solid var(--border);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;position:sticky;bottom:0;background:var(--bg2)}
+/* ================================================================
+   MODALS — REDESIGNED: Full responsive (mobile bottom sheet + desktop centered)
+   ================================================================ */
 
-/* =================== SEAT MAP =================== */
-.screen{height:4px;background:linear-gradient(to right,transparent,var(--gold),transparent);border-radius:3px;margin-bottom:5px}
-.screen-text{font-size:9px;color:var(--muted);letter-spacing:2px;text-align:center;font-family:'Space Mono',monospace;margin-bottom:18px}
-.seats-grid{display:flex;flex-direction:column;align-items:center;gap:5px;margin-bottom:18px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+/* Overlay */
+.modal-overlay{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,0);
+  z-index:2000;
+  display:flex;
+  align-items:flex-end;   /* mobile: bottom sheet */
+  justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:background .35s, opacity .35s;
+  backdrop-filter:blur(0px);
+}
+.modal-overlay.open{
+  opacity:1;pointer-events:all;
+  background:rgba(0,0,0,.82);
+  backdrop-filter:blur(12px);
+}
+
+/* Modal box */
+.modal{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:24px 24px 0 0;
+  width:100%;max-width:100%;
+  max-height:94vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  transform:translateY(100%);
+  transition:transform .35s cubic-bezier(.32,0,.33,1);
+  scrollbar-width:thin;
+  scrollbar-color:rgba(245,200,66,.3) transparent;
+}
+.modal::-webkit-scrollbar{width:3px}
+.modal::-webkit-scrollbar-thumb{background:rgba(245,200,66,.25);border-radius:2px}
+.modal-overlay.open .modal{transform:translateY(0)}
+
+/* Modal handle (mobile drag indicator) */
+.modal-handle{
+  width:40px;height:4px;
+  background:rgba(255,255,255,.12);
+  border-radius:2px;margin:14px auto 0;
+  flex-shrink:0;
+}
+
+/* Modal header */
+.modal-header{
+  padding:16px 20px 14px;
+  border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+  position:sticky;top:0;background:var(--bg2);z-index:5;
+  border-radius:24px 24px 0 0;
+}
+.modal-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:22px;letter-spacing:1px;
+}
+.modal-close{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);
+  color:var(--muted);font-size:13px;cursor:pointer;
+  width:32px;height:32px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;transition:.2s;flex-shrink:0;
+}
+.modal-close:hover{background:rgba(255,255,255,.15);color:var(--text)}
+
+.modal-body{padding:20px}
+
+.modal-footer{
+  border-top:1px solid var(--border);
+  padding:14px 20px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:10px;
+  position:sticky;bottom:0;background:var(--bg2);
+  backdrop-filter:blur(10px);
+}
+
+/* ================================================================
+   FORM ELEMENTS — Modern, spacious, beautiful
+   ================================================================ */
+
+.form-group{margin-bottom:16px;position:relative}
+.form-group:last-child{margin-bottom:0}
+
+.form-label{
+  font-size:10px;color:var(--muted);
+  letter-spacing:1px;margin-bottom:6px;display:block;
+  font-family:'Space Mono',monospace;font-weight:700;
+  text-transform:uppercase;
+}
+
+.form-input{
+  width:100%;
+  background:var(--input-bg);
+  border:1.5px solid var(--input-border);
+  border-radius:12px;
+  padding:13px 14px;
+  color:var(--text);font-size:14px;
+  font-family:'DM Sans',sans-serif;
+  outline:none;transition:all .25s ease;
+  line-height:1.4;
+  -webkit-appearance:none;appearance:none;
+}
+.form-input::placeholder{color:rgba(136,150,176,.5)}
+.form-input:focus{
+  border-color:var(--input-focus);
+  background:rgba(255,255,255,.08);
+  box-shadow:0 0 0 4px rgba(245,200,66,.08);
+}
+.form-input.error{border-color:rgba(232,48,74,.6);background:rgba(232,48,74,.05)}
+.form-input.error:focus{box-shadow:0 0 0 4px rgba(232,48,74,.08)}
+.form-input.success{border-color:rgba(34,197,94,.5);background:rgba(34,197,94,.04)}
+
+/* Input with icon */
+.input-wrapper{position:relative}
+.input-wrapper .form-input{padding-right:46px}
+.input-icon-btn{
+  position:absolute;right:13px;top:50%;transform:translateY(-50%);
+  background:none;border:none;cursor:pointer;
+  color:var(--muted);font-size:16px;
+  padding:4px;border-radius:6px;
+  transition:.2s;line-height:1;
+}
+.input-icon-btn:hover{color:var(--text)}
+
+.form-error{font-size:11px;color:var(--red);margin-top:5px;display:flex;align-items:center;gap:4px}
+.form-error::before{content:'⚠';font-size:10px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* ================================================================
+   AUTH MODAL
+   ================================================================ */
+
+/* Tab switcher */
+.auth-tabs{
+  display:flex;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--border);
+  border-radius:14px;padding:4px;
+  margin-bottom:24px;gap:4px;
+}
+.auth-tab{
+  flex:1;padding:10px;text-align:center;cursor:pointer;
+  border-radius:10px;font-size:14px;font-weight:500;
+  color:var(--muted);transition:.25s;border:none;
+  background:none;font-family:'DM Sans',sans-serif;
+  letter-spacing:.2px;
+}
+.auth-tab.active{
+  background:var(--gold);color:#000;font-weight:700;
+  box-shadow:0 2px 12px rgba(245,200,66,.3);
+}
+
+/* Social auth buttons */
+.social-auth{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.social-auth-btn{
+  padding:12px 10px;
+  background:rgba(255,255,255,.05);
+  border:1.5px solid var(--input-border);
+  border-radius:12px;cursor:pointer;
+  font-size:13px;color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  font-weight:500;
+  transition:.2s;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+}
+.social-auth-btn:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.2)}
+.social-auth-btn:active{transform:scale(.98)}
+
+/* Divider */
+.auth-divider{
+  text-align:center;color:var(--muted);font-size:12px;
+  margin:18px 0;position:relative;
+}
+.auth-divider::before,.auth-divider::after{
+  content:'';position:absolute;top:50%;
+  width:calc(50% - 70px);height:1px;
+  background:var(--border);
+}
+.auth-divider::before{left:0}.auth-divider::after{right:0}
+
+/* Checkbox */
+.checkbox-wrap{
+  display:flex;align-items:flex-start;gap:9px;
+  font-size:12px;color:var(--muted);cursor:pointer;line-height:1.5;
+}
+.checkbox-wrap input[type=checkbox]{
+  margin-top:2px;accent-color:var(--gold);
+  width:16px;height:16px;flex-shrink:0;cursor:pointer;
+}
+
+/* Forgot password link */
+.link-btn{
+  font-size:12px;color:var(--gold);cursor:pointer;
+  background:none;border:none;font-family:'DM Sans',sans-serif;
+  padding:0;text-decoration:underline;text-underline-offset:3px;
+}
+
+/* Pass strength */
+#passStrength{
+  margin-top:6px;font-size:11px;color:var(--muted);
+  display:flex;gap:4px;align-items:center;
+}
+.strength-bar{
+  flex:1;height:3px;border-radius:2px;
+  background:rgba(255,255,255,.1);overflow:hidden;
+}
+.strength-fill{height:100%;border-radius:2px;transition:.3s}
+
+/* Submit button full-width */
+.btn-submit{
+  width:100%;justify-content:center;
+  padding:14px;font-size:14px;
+  border-radius:14px;
+  margin-top:4px;
+  box-shadow:0 4px 16px rgba(245,200,66,.25);
+  letter-spacing:.3px;
+}
+.btn-submit:hover{box-shadow:0 6px 20px rgba(245,200,66,.35)}
+
+/* ================================================================
+   SEAT MAP
+   ================================================================ */
+.screen{
+  height:3px;
+  background:linear-gradient(to right,transparent,var(--gold),transparent);
+  border-radius:3px;margin-bottom:6px;
+}
+.screen-text{
+  font-size:9px;color:var(--muted);letter-spacing:2px;
+  text-align:center;font-family:'Space Mono',monospace;margin-bottom:20px;
+}
+.seats-grid{
+  display:flex;flex-direction:column;align-items:center;
+  gap:5px;margin-bottom:18px;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  padding-bottom:4px;
+}
 .seat-row{display:flex;align-items:center;gap:4px}
 .seat-row-label{width:14px;font-size:9px;color:var(--muted);font-family:'Space Mono',monospace;text-align:center;flex-shrink:0}
-.seat{width:26px;height:23px;border-radius:4px 4px 3px 3px;border:1px solid;cursor:pointer;transition:.15s;font-size:8px;display:flex;align-items:center;justify-content:center}
+.seat{
+  width:26px;height:23px;border-radius:4px 4px 3px 3px;
+  border:1px solid;cursor:pointer;transition:.15s;
+  font-size:8px;display:flex;align-items:center;justify-content:center;
+}
 .seat.available{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.15);color:var(--muted)}
 .seat.available:active{background:rgba(245,200,66,.2);border-color:var(--gold);color:var(--gold)}
 .seat.selected{background:var(--gold);border-color:var(--gold2);color:#000;font-weight:700}
@@ -292,7 +479,10 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px 16p
 .seat.vip{background:rgba(99,102,241,.15);border-color:rgba(99,102,241,.4);color:#818cf8}
 .seat.vip.selected{background:#6366f1;border-color:#4f46e5;color:#fff}
 .seat-gap{width:12px}
-.seat-legend{display:flex;gap:12px;justify-content:center;margin-bottom:16px;flex-wrap:wrap}
+.seat-legend{
+  display:flex;gap:12px;justify-content:center;
+  margin-bottom:16px;flex-wrap:wrap;
+}
 .legend-item{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted)}
 .legend-dot{width:14px;height:12px;border-radius:3px 3px 2px 2px;border:1px solid}
 .booking-summary{font-size:13px}
@@ -300,54 +490,117 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px 16p
 .booking-total{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold)}
 .booking-total span{font-size:11px;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:400;margin-left:2px}
 
-/* =================== PAYMENT =================== */
-.form-group{margin-bottom:13px}
-.form-label{font-size:10px;color:var(--muted);letter-spacing:.5px;margin-bottom:4px;display:block;font-family:'Space Mono',monospace}
-.form-input{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:.2s}
-.form-input:focus{border-color:rgba(245,200,66,.4);background:rgba(255,255,255,.07)}
-.form-input.error{border-color:var(--red)}
-.form-input.success{border-color:var(--green)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.form-error{font-size:10px;color:var(--red);margin-top:3px}
-.pay-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:14px}
-.pay-method{padding:10px 6px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;cursor:pointer;text-align:center;font-size:11px;color:var(--muted);transition:.2s}
-.pay-method.selected{border-color:var(--gold);color:var(--gold);background:rgba(245,200,66,.07)}
-.pay-method .pm-icon{font-size:18px;margin-bottom:3px}
-.order-summary{background:rgba(245,200,66,.05);border:1px solid rgba(245,200,66,.15);border-radius:10px;padding:12px;margin-bottom:14px}
-.order-row{display:flex;justify-content:space-between;margin-bottom:5px;font-size:12px}
-.order-row.total{border-top:1px solid rgba(255,255,255,.07);margin-top:8px;padding-top:8px;font-weight:600}
-.order-row.total .val{color:var(--gold);font-family:'Bebas Neue',sans-serif;font-size:20px}
+/* ================================================================
+   PAYMENT FORM
+   ================================================================ */
+
+/* Pay method selector */
+.pay-methods{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:8px;margin-bottom:18px;
+}
+.pay-method{
+  padding:12px 8px;
+  background:rgba(255,255,255,.04);
+  border:1.5px solid var(--input-border);
+  border-radius:12px;cursor:pointer;
+  text-align:center;font-size:11px;
+  color:var(--muted);transition:.2s;
+  font-family:'DM Sans',sans-serif;
+}
+.pay-method:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2)}
+.pay-method.selected{
+  border-color:var(--gold);color:var(--gold);
+  background:rgba(245,200,66,.08);
+  box-shadow:0 0 0 3px rgba(245,200,66,.1);
+}
+.pay-method .pm-icon{font-size:20px;margin-bottom:4px;display:block}
+
+/* Order summary */
+.order-summary{
+  background:rgba(245,200,66,.04);
+  border:1px solid rgba(245,200,66,.12);
+  border-radius:14px;padding:14px;margin-bottom:18px;
+}
+.order-row{
+  display:flex;justify-content:space-between;
+  margin-bottom:6px;font-size:12px;
+  align-items:center;
+}
+.order-row:last-child{margin-bottom:0}
+.order-row.total{
+  border-top:1px solid rgba(255,255,255,.07);
+  margin-top:10px;padding-top:10px;font-weight:600;
+}
+.order-row.total .val{
+  color:var(--gold);font-family:'Bebas Neue',sans-serif;font-size:20px;
+}
 .discount-row{color:var(--green)}
 
-/* =================== AUTH MODAL =================== */
-.auth-tabs{display:flex;margin-bottom:18px;background:rgba(255,255,255,.04);border-radius:8px;padding:3px}
-.auth-tab{flex:1;padding:9px;text-align:center;cursor:pointer;border-radius:6px;font-size:14px;font-weight:500;color:var(--muted);transition:.2s;border:none;background:none;font-family:'DM Sans',sans-serif}
-.auth-tab.active{background:var(--gold);color:#000;font-weight:700}
-.auth-divider{text-align:center;color:var(--muted);font-size:11px;margin:12px 0;position:relative}
-.auth-divider::before,.auth-divider::after{content:'';position:absolute;top:50%;width:38%;height:1px;background:var(--border)}
-.auth-divider::before{left:0}.auth-divider::after{right:0}
-.social-auth{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.social-auth-btn{padding:10px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px;color:var(--text);font-family:'DM Sans',sans-serif;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px}
-.checkbox-wrap{display:flex;align-items:flex-start;gap:7px;font-size:11px;color:var(--muted);cursor:pointer}
-.checkbox-wrap input{margin-top:2px;accent-color:var(--gold)}
+/* Coupon row */
+.coupon-row{display:flex;gap:8px;align-items:flex-start}
+.coupon-row .form-input{flex:1;min-width:0}
+.coupon-apply-btn{
+  padding:13px 16px;white-space:nowrap;font-size:12px;
+  border-radius:12px;flex-shrink:0;
+}
 
-/* =================== SUCCESS =================== */
-.success-anim{text-align:center;padding:24px 0}
-.success-icon-big{font-size:52px;margin-bottom:12px;animation:popIn .4s ease}
-@keyframes popIn{0%{transform:scale(0);opacity:0}70%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
-.ticket-code{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:14px;margin:14px 0;text-align:left}
-.ticket-code-label{font-size:9px;color:var(--muted);letter-spacing:1px;margin-bottom:4px;font-family:'Space Mono',monospace}
+/* ================================================================
+   CART
+   ================================================================ */
+.cart-body-inner{display:flex;flex-direction:column;gap:10px}
+.cart-ticket-item{
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:12px;padding:14px;
+}
+
+/* ================================================================
+   SUCCESS STATE
+   ================================================================ */
+.success-anim{text-align:center;padding:16px 0 8px}
+.success-icon-big{font-size:56px;margin-bottom:14px;animation:popIn .4s cubic-bezier(.34,1.56,.64,1)}
+@keyframes popIn{0%{transform:scale(0);opacity:0}100%{transform:scale(1);opacity:1}}
+.ticket-code{
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:12px;padding:16px;margin:16px 0;text-align:left;
+}
+.ticket-code-label{font-size:9px;color:var(--muted);letter-spacing:1px;margin-bottom:5px;font-family:'Space Mono',monospace}
 .ticket-code-val{font-family:'Space Mono',monospace;font-size:18px;color:var(--gold);letter-spacing:2px}
 
-/* =================== VIDEO PLAYER =================== */
-.player-modal{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:3000;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.3s}
+/* ================================================================
+   VIDEO PLAYER
+   ================================================================ */
+.player-modal{
+  position:fixed;inset:0;background:rgba(0,0,0,.97);
+  z-index:3000;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:.3s;
+}
 .player-modal.open{opacity:1;pointer-events:all}
 .player-container{width:100%;padding:0 12px}
-.player-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;padding:0 4px}
-.player-title-text{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;margin-right:10px}
-.player-close-btn{background:rgba(255,255,255,.08);border:none;color:var(--muted);font-size:13px;cursor:pointer;padding:6px 12px;border-radius:20px;white-space:nowrap}
-.video-wrap{width:100%;background:#000;border-radius:10px;overflow:hidden;position:relative;aspect-ratio:16/9}
-.video-scene{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#050810,#160a30);gap:8px;cursor:pointer;position:relative;overflow:hidden}
+.player-header{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:10px;padding:0 4px;
+}
+.player-title-text{
+  font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  flex:1;margin-right:10px;
+}
+.player-close-btn{
+  background:rgba(255,255,255,.08);border:none;color:var(--muted);
+  font-size:13px;cursor:pointer;padding:6px 12px;border-radius:20px;white-space:nowrap;
+}
+.video-wrap{
+  width:100%;background:#000;border-radius:10px;
+  overflow:hidden;position:relative;aspect-ratio:16/9;
+}
+.video-scene{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#050810,#160a30);
+  gap:8px;cursor:pointer;position:relative;overflow:hidden;
+}
 .video-scene::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(245,200,66,.06),transparent 70%)}
 .video-scene-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1.5px;color:rgba(255,255,255,.6)}
 .play-big{width:56px;height:56px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;padding-left:4px;flex-shrink:0}
@@ -368,21 +621,29 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px 16p
 .vol-slider::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--gold);cursor:pointer}
 .quality-btn{font-size:10px;font-family:'Space Mono',monospace;color:var(--gold);background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.2);border-radius:4px;padding:2px 6px;cursor:pointer}
 
-/* =================== CART =================== */
-.cart-body-inner{display:flex;flex-direction:column;gap:10px}
-.cart-ticket-item{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:12px}
-
-/* =================== TOAST =================== */
+/* ================================================================
+   TOAST
+   ================================================================ */
 .toast-container{position:fixed;bottom:74px;right:12px;z-index:9999;display:flex;flex-direction:column;gap:6px;pointer-events:none}
-.toast-item{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:12px;display:flex;align-items:center;gap:8px;min-width:200px;max-width:280px;transform:translateX(110%);transition:.3s;pointer-events:all;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.toast-item{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:12px;padding:10px 14px;font-size:12px;
+  display:flex;align-items:center;gap:8px;
+  min-width:200px;max-width:290px;
+  transform:translateX(110%);transition:.3s;pointer-events:all;
+  box-shadow:0 8px 24px rgba(0,0,0,.35);
+}
 .toast-item.show{transform:translateX(0)}
 
-/* =================== SCROLL TOP =================== */
-.scroll-top{display:none}
-
-/* Profile dropdown - center on mobile */
-.profile-dropdown{position:fixed;top:auto;bottom:70px;right:12px;left:12px;background:var(--bg2);border:1px solid var(--border);border-radius:16px;box-shadow:0 16px 40px rgba(0,0,0,.5);z-index:999;overflow:hidden;display:none;max-width:320px;margin:0 auto}
-.profile-dropdown.show{display:block;animation:slideUpModal .2s ease}
+/* Profile dropdown */
+.profile-dropdown{
+  position:fixed;top:auto;bottom:70px;right:12px;left:12px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:16px;box-shadow:0 16px 40px rgba(0,0,0,.5);
+  z-index:999;overflow:hidden;display:none;max-width:320px;margin:0 auto;
+}
+.profile-dropdown.show{display:block;animation:fadeSlideUp .2s ease}
+@keyframes fadeSlideUp{from{transform:translateY(10px);opacity:0}to{transform:translateY(0);opacity:1}}
 .pd-header{padding:14px;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:center}
 .pd-info{flex:1}
 .pd-name{font-weight:600;font-size:14px}
@@ -391,9 +652,90 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px 16p
 .pd-menu a:active{background:rgba(255,255,255,.04)}
 .pd-menu .logout{color:var(--red)}
 
-/* Section spacing for bottom nav */
 section:last-of-type{padding-bottom:72px}
 footer{padding-bottom:72px}
+
+/* ================================================================
+   DESKTOP BREAKPOINT — Center modal as dialog, not bottom sheet
+   ================================================================ */
+@media (min-width: 640px) {
+  /* Reposition overlay to center */
+  .modal-overlay{
+    align-items:center;
+    padding:20px;
+  }
+
+  /* Modal: centered card, not bottom sheet */
+  .modal{
+    max-width:var(--modal-max);
+    border-radius:20px;
+    max-height:88vh;
+    transform:scale(.95) translateY(0);
+    transition:transform .3s cubic-bezier(.34,1.2,.64,1), opacity .3s;
+    opacity:0;
+  }
+  .modal-overlay.open .modal{
+    transform:scale(1) translateY(0);
+    opacity:1;
+  }
+
+  /* Hide drag handle on desktop */
+  .modal-handle{display:none}
+
+  /* Rounded on all sides */
+  .modal-header{border-radius:20px 20px 0 0}
+
+  /* Wider grid for desktop forms */
+  .form-row{gap:16px}
+  .pay-methods{gap:10px}
+  .social-auth{gap:12px}
+  
+  /* Larger auth modal */
+  #authModal .modal{max-width:460px}
+  #seatModal .modal{max-width:600px}
+  #paymentModal .modal{max-width:520px}
+  #cartModal .modal{max-width:480px}
+
+  /* Nav improvements */
+  .search-input{width:180px}
+  .search-input:focus{width:220px}
+
+  /* Movie grid — 4 col on wide */
+  .movies-grid{grid-template-columns:repeat(4,1fr)}
+  .vod-grid{grid-template-columns:repeat(3,1fr)}
+  .promos-grid{grid-template-columns:repeat(3,1fr)}
+  
+  /* Larger form inputs */
+  .form-input{font-size:15px;padding:14px 16px}
+  .form-label{font-size:11px}
+}
+
+@media (min-width: 900px) {
+  section{padding:36px 40px 44px}
+  .movies-grid{grid-template-columns:repeat(4,1fr);gap:16px}
+  .vod-grid{grid-template-columns:repeat(4,1fr)}
+  .promos-grid{grid-template-columns:repeat(3,1fr)}
+  .schedule-grid{grid-template-columns:repeat(2,1fr)}
+  .cinemas-list{display:grid;grid-template-columns:repeat(2,1fr)}
+  .account-grid{flex-direction:row;align-items:flex-start}
+  .account-grid .account-card:first-child{min-width:300px}
+
+  /* Hero bigger */
+  .hero{min-height:560px}
+  .hero h1{font-size:72px}
+
+  /* Desktop: wider section titles */
+  .section-title{font-size:34px}
+  
+  /* Bottom nav hidden on desktop */
+  .bottom-nav{display:none}
+  
+  /* Desktop nav links visible */
+  nav{padding:0 40px;height:64px}
+  .logo{font-size:28px}
+  .search-input{width:200px}
+  .search-input:focus{width:260px}
+}
 </style>
 </head>
 <body>
@@ -571,7 +913,9 @@ footer{padding-bottom:72px}
   </div>
 </nav>
 
-<!-- AUTH MODAL -->
+<!-- ================================================================
+     AUTH MODAL — Redesigned
+     ================================================================ -->
 <div class="modal-overlay" id="authModal">
   <div class="modal">
     <div class="modal-handle"></div>
@@ -584,45 +928,84 @@ footer{padding-bottom:72px}
         <button class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">Đăng Nhập</button>
         <button class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')">Đăng Ký</button>
       </div>
+
+      <!-- LOGIN FORM -->
       <div id="loginForm">
         <div class="social-auth">
-          <button class="social-auth-btn" onclick="socialLogin('Google')">🟢 Google</button>
-          <button class="social-auth-btn" onclick="socialLogin('Facebook')">🔵 Facebook</button>
+          <button class="social-auth-btn" onclick="socialLogin('Google')">
+            <span style="font-size:16px">🟢</span> Google
+          </button>
+          <button class="social-auth-btn" onclick="socialLogin('Facebook')">
+            <span style="font-size:16px">🔵</span> Facebook
+          </button>
         </div>
         <div class="auth-divider">hoặc đăng nhập với email</div>
         <div class="form-group">
-          <label class="form-label">EMAIL</label>
-          <input class="form-input" id="loginEmail" type="email" placeholder="email@example.com">
-          <div class="form-error" id="loginEmailErr"></div>
+          <label class="form-label">Email</label>
+          <input class="form-input" id="loginEmail" type="email" placeholder="email@example.com" autocomplete="email">
+          <div class="form-error" id="loginEmailErr" style="display:none"></div>
         </div>
         <div class="form-group">
-          <label class="form-label">MẬT KHẨU</label>
-          <div style="position:relative">
-            <input class="form-input" id="loginPass" type="password" placeholder="••••••••" style="padding-right:42px">
-            <button onclick="togglePassVis('loginPass',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--muted);font-size:16px">👁</button>
+          <label class="form-label">Mật Khẩu</label>
+          <div class="input-wrapper">
+            <input class="form-input" id="loginPass" type="password" placeholder="••••••••" autocomplete="current-password">
+            <button class="input-icon-btn" onclick="togglePassVis('loginPass',this)" tabindex="-1">👁</button>
           </div>
-          <div class="form-error" id="loginPassErr"></div>
+          <div class="form-error" id="loginPassErr" style="display:none"></div>
         </div>
-        <div style="display:flex;justify-content:flex-end;margin-bottom:14px">
-          <a style="font-size:12px;color:var(--gold);cursor:pointer" onclick="showForgotPass()">Quên mật khẩu?</a>
+        <div style="display:flex;justify-content:flex-end;margin-bottom:20px;margin-top:-8px">
+          <button class="link-btn" onclick="showForgotPass()">Quên mật khẩu?</button>
         </div>
-        <button class="btn-primary" style="width:100%;justify-content:center;padding:13px" onclick="doLogin()">Đăng Nhập →</button>
-        <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:12px">Chưa có tài khoản? <a style="color:var(--gold);cursor:pointer" onclick="switchAuthTab('register')">Đăng ký ngay</a></p>
+        <button class="btn-primary btn-submit" onclick="doLogin()">Đăng Nhập →</button>
+        <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:16px">
+          Chưa có tài khoản? <button class="link-btn" onclick="switchAuthTab('register')">Đăng ký ngay</button>
+        </p>
       </div>
+
+      <!-- REGISTER FORM -->
       <div id="registerForm" style="display:none">
-        <div class="form-group"><label class="form-label">HỌ VÀ TÊN</label><input class="form-input" id="regName" type="text" placeholder="Nguyễn Văn An"><div class="form-error" id="regNameErr"></div></div>
-        <div class="form-group"><label class="form-label">EMAIL</label><input class="form-input" id="regEmail" type="email" placeholder="email@example.com"><div class="form-error" id="regEmailErr"></div></div>
-        <div class="form-group"><label class="form-label">SỐ ĐIỆN THOẠI</label><input class="form-input" id="regPhone" type="tel" placeholder="0901234567"></div>
         <div class="form-group">
-          <label class="form-label">MẬT KHẨU</label>
-          <div style="position:relative"><input class="form-input" id="regPass" type="password" placeholder="Tối thiểu 8 ký tự" style="padding-right:42px"><button onclick="togglePassVis('regPass',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--muted);font-size:16px">👁</button></div>
-          <div class="form-error" id="regPassErr"></div>
-          <div id="passStrength" style="margin-top:5px;font-size:11px;color:var(--muted)"></div>
+          <label class="form-label">Họ và Tên</label>
+          <input class="form-input" id="regName" type="text" placeholder="Nguyễn Văn An" autocomplete="name">
+          <div class="form-error" id="regNameErr" style="display:none"></div>
         </div>
-        <div class="form-group"><label class="form-label">XÁC NHẬN MẬT KHẨU</label><input class="form-input" id="regPass2" type="password" placeholder="••••••••"><div class="form-error" id="regPass2Err"></div></div>
-        <div class="form-group"><label class="checkbox-wrap"><input type="checkbox" id="regAgree"> Tôi đồng ý với <a style="color:var(--gold)">điều khoản</a> và <a style="color:var(--gold)">chính sách</a></label><div class="form-error" id="regAgreeErr"></div></div>
-        <button class="btn-primary" style="width:100%;justify-content:center;padding:13px" onclick="doRegister()">Tạo Tài Khoản →</button>
-        <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:12px">Đã có tài khoản? <a style="color:var(--gold);cursor:pointer" onclick="switchAuthTab('login')">Đăng nhập</a></p>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" id="regEmail" type="email" placeholder="email@example.com" autocomplete="email">
+          <div class="form-error" id="regEmailErr" style="display:none"></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Số Điện Thoại</label>
+          <input class="form-input" id="regPhone" type="tel" placeholder="0901 234 567" autocomplete="tel">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mật Khẩu</label>
+          <div class="input-wrapper">
+            <input class="form-input" id="regPass" type="password" placeholder="Tối thiểu 8 ký tự" autocomplete="new-password">
+            <button class="input-icon-btn" onclick="togglePassVis('regPass',this)" tabindex="-1">👁</button>
+          </div>
+          <div class="form-error" id="regPassErr" style="display:none"></div>
+          <div id="passStrength"></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Xác Nhận Mật Khẩu</label>
+          <div class="input-wrapper">
+            <input class="form-input" id="regPass2" type="password" placeholder="Nhập lại mật khẩu" autocomplete="new-password">
+            <button class="input-icon-btn" onclick="togglePassVis('regPass2',this)" tabindex="-1">👁</button>
+          </div>
+          <div class="form-error" id="regPass2Err" style="display:none"></div>
+        </div>
+        <div class="form-group">
+          <label class="checkbox-wrap">
+            <input type="checkbox" id="regAgree">
+            <span>Tôi đồng ý với <a style="color:var(--gold);cursor:pointer">điều khoản</a> và <a style="color:var(--gold);cursor:pointer">chính sách bảo mật</a></span>
+          </label>
+          <div class="form-error" id="regAgreeErr" style="display:none"></div>
+        </div>
+        <button class="btn-primary btn-submit" onclick="doRegister()">Tạo Tài Khoản →</button>
+        <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:16px">
+          Đã có tài khoản? <button class="link-btn" onclick="switchAuthTab('login')">Đăng nhập</button>
+        </p>
       </div>
     </div>
   </div>
@@ -794,11 +1177,23 @@ function switchAuthTab(tab){
   clearAuthErrors();
 }
 function clearAuthErrors(){
-  ['loginEmailErr','loginPassErr','regNameErr','regEmailErr','regPassErr','regPass2Err','regAgreeErr'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=''});
+  ['loginEmailErr','loginPassErr','regNameErr','regEmailErr','regPassErr','regPass2Err','regAgreeErr'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){el.textContent='';el.style.display='none';}
+  });
   document.querySelectorAll('#authModal .form-input').forEach(i=>i.classList.remove('error','success'));
 }
+function showErr(id,msg){const el=document.getElementById(id);if(el){el.textContent=msg;el.style.display=msg?'flex':'none';}}
 function togglePassVis(inputId,btn){const inp=document.getElementById(inputId);const isPass=inp.type==='password';inp.type=isPass?'text':'password';btn.textContent=isPass?'🙈':'👁'}
-function checkPassStrength(pass){let s=0;if(pass.length>=8)s++;if(/[A-Z]/.test(pass))s++;if(/[0-9]/.test(pass))s++;if(/[^A-Za-z0-9]/.test(pass))s++;const labels=['','Yếu ⚠️','Trung bình 🟡','Mạnh 🟢','Rất mạnh 🔒'];const colors=['','#e8304a','#f5c842','#22c55e','#3b82f6'];document.getElementById('passStrength').innerHTML=pass.length?`<span style="color:${colors[s]}">${labels[s]}</span>`:'';}
+function checkPassStrength(pass){
+  let s=0;
+  if(pass.length>=8)s++;if(/[A-Z]/.test(pass))s++;if(/[0-9]/.test(pass))s++;if(/[^A-Za-z0-9]/.test(pass))s++;
+  const labels=['','Yếu','Trung bình','Mạnh','Rất mạnh'];
+  const colors=['','#e8304a','#f5c842','#22c55e','#3b82f6'];
+  const el=document.getElementById('passStrength');
+  if(!pass.length){el.innerHTML='';return;}
+  el.innerHTML=`<div class="strength-bar"><div class="strength-fill" style="width:${s*25}%;background:${colors[s]}"></div></div><span style="color:${colors[s]};font-size:11px;white-space:nowrap">${labels[s]}</span>`;
+}
 document.getElementById('regPass').addEventListener('input',function(){checkPassStrength(this.value)});
 
 function doLogin(){
@@ -806,12 +1201,12 @@ function doLogin(){
   const email=document.getElementById('loginEmail').value.trim();
   const pass=document.getElementById('loginPass').value;
   let valid=true;
-  if(!email||!/\S+@\S+\.\S+/.test(email)){document.getElementById('loginEmailErr').textContent='Email không hợp lệ';document.getElementById('loginEmail').classList.add('error');valid=false;}
-  if(!pass){document.getElementById('loginPassErr').textContent='Vui lòng nhập mật khẩu';document.getElementById('loginPass').classList.add('error');valid=false;}
+  if(!email||!/\S+@\S+\.\S+/.test(email)){showErr('loginEmailErr','Email không hợp lệ');document.getElementById('loginEmail').classList.add('error');valid=false;}
+  if(!pass){showErr('loginPassErr','Vui lòng nhập mật khẩu');document.getElementById('loginPass').classList.add('error');valid=false;}
   if(!valid)return;
   const users=DB.getUsers();
   const user=users.find(u=>u.email===email&&u.pass===btoa(pass));
-  if(!user){document.getElementById('loginPassErr').textContent='Email hoặc mật khẩu không đúng';document.getElementById('loginPass').classList.add('error');document.getElementById('loginEmail').classList.add('error');return;}
+  if(!user){showErr('loginPassErr','Email hoặc mật khẩu không đúng');document.getElementById('loginPass').classList.add('error');document.getElementById('loginEmail').classList.add('error');return;}
   loginSuccess(user);
 }
 function doRegister(){
@@ -822,14 +1217,14 @@ function doRegister(){
   const pass2=document.getElementById('regPass2').value;
   const agree=document.getElementById('regAgree').checked;
   let valid=true;
-  if(!name||name.length<2){document.getElementById('regNameErr').textContent='Họ tên tối thiểu 2 ký tự';document.getElementById('regName').classList.add('error');valid=false;}
-  if(!email||!/\S+@\S+\.\S+/.test(email)){document.getElementById('regEmailErr').textContent='Email không hợp lệ';document.getElementById('regEmail').classList.add('error');valid=false;}
-  if(!pass||pass.length<8){document.getElementById('regPassErr').textContent='Mật khẩu tối thiểu 8 ký tự';document.getElementById('regPass').classList.add('error');valid=false;}
-  if(pass!==pass2){document.getElementById('regPass2Err').textContent='Mật khẩu không khớp';document.getElementById('regPass2').classList.add('error');valid=false;}
-  if(!agree){document.getElementById('regAgreeErr').textContent='Vui lòng đồng ý điều khoản';valid=false;}
+  if(!name||name.length<2){showErr('regNameErr','Họ tên tối thiểu 2 ký tự');document.getElementById('regName').classList.add('error');valid=false;}
+  if(!email||!/\S+@\S+\.\S+/.test(email)){showErr('regEmailErr','Email không hợp lệ');document.getElementById('regEmail').classList.add('error');valid=false;}
+  if(!pass||pass.length<8){showErr('regPassErr','Mật khẩu tối thiểu 8 ký tự');document.getElementById('regPass').classList.add('error');valid=false;}
+  if(pass!==pass2){showErr('regPass2Err','Mật khẩu không khớp');document.getElementById('regPass2').classList.add('error');valid=false;}
+  if(!agree){showErr('regAgreeErr','Vui lòng đồng ý điều khoản');valid=false;}
   if(!valid)return;
   const users=DB.getUsers();
-  if(users.find(u=>u.email===email)){document.getElementById('regEmailErr').textContent='Email đã được đăng ký';document.getElementById('regEmail').classList.add('error');return;}
+  if(users.find(u=>u.email===email)){showErr('regEmailErr','Email đã được đăng ký');document.getElementById('regEmail').classList.add('error');return;}
   const newUser={id:Date.now(),name,email,pass:btoa(pass),phone:document.getElementById('regPhone').value,createdAt:new Date().toLocaleDateString('vi-VN')};
   users.push(newUser);DB.saveUsers(users);DB.initUserData(email,name);
   loginSuccess(newUser);showToast('🎉',`Chào mừng ${name}!`,'#22c55e');
@@ -1017,37 +1412,53 @@ function openPayment(){
 function renderPaymentForm(total){
   document.getElementById('paymentBody').innerHTML=`
     <div class="order-summary">
-      <div class="order-row"><span style="color:var(--muted)">Phim</span><span style="font-weight:600">${currentMovie.title}</span></div>
+      <div class="order-row"><span style="color:var(--muted)">Phim</span><span style="font-weight:600;font-size:13px">${currentMovie.title}</span></div>
       <div class="order-row"><span style="color:var(--muted)">Suất chiếu</span><span>${currentBookingTime} • Hôm nay</span></div>
       <div class="order-row"><span style="color:var(--muted)">Ghế</span><span style="font-family:'Space Mono',monospace;font-size:11px">${selectedSeats.join(' • ')}</span></div>
       <div class="order-row"><span style="color:var(--muted)">Tạm tính</span><span>${total.toLocaleString('vi-VN')}đ</span></div>
       <div id="discountRow" style="display:none" class="order-row discount-row"><span>Giảm giá</span><span id="discountVal"></span></div>
       <div class="order-row total"><span>Tổng tiền</span><span class="val" id="finalTotal">${total.toLocaleString('vi-VN')}đ</span></div>
     </div>
-    <div style="margin-bottom:14px">
-      <div class="form-label">PHƯƠNG THỨC THANH TOÁN</div>
+    <div style="margin-bottom:18px">
+      <div class="form-label" style="margin-bottom:10px">Phương Thức Thanh Toán</div>
       <div class="pay-methods">
-        <div class="pay-method selected" onclick="selectPayMethod(this)"><div class="pm-icon">💳</div>Thẻ</div>
-        <div class="pay-method" onclick="selectPayMethod(this)"><div class="pm-icon">📱</div>MoMo</div>
-        <div class="pay-method" onclick="selectPayMethod(this)"><div class="pm-icon">🏦</div>Banking</div>
+        <div class="pay-method selected" onclick="selectPayMethod(this)"><span class="pm-icon">💳</span>Thẻ</div>
+        <div class="pay-method" onclick="selectPayMethod(this)"><span class="pm-icon">📱</span>MoMo</div>
+        <div class="pay-method" onclick="selectPayMethod(this)"><span class="pm-icon">🏦</span>Banking</div>
       </div>
     </div>
     <div id="cardFields">
-      <div class="form-group"><label class="form-label">SỐ THẺ</label><input class="form-input" id="cardNum" placeholder="1234 5678 9012 3456" maxlength="19" oninput="fmtCard(this)"><div class="form-error" id="cardNumErr"></div></div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">HẾT HẠN</label><input class="form-input" id="cardExp" placeholder="MM/YY" maxlength="5" oninput="fmtExp(this)"><div class="form-error" id="cardExpErr"></div></div>
-        <div class="form-group"><label class="form-label">CVV</label><input class="form-input" id="cardCvv" placeholder="123" maxlength="3" type="password"><div class="form-error" id="cardCvvErr"></div></div>
+      <div class="form-group">
+        <label class="form-label">Số Thẻ</label>
+        <input class="form-input" id="cardNum" placeholder="1234 5678 9012 3456" maxlength="19" inputmode="numeric" oninput="fmtCard(this)">
+        <div class="form-error" id="cardNumErr" style="display:none"></div>
       </div>
-      <div class="form-group"><label class="form-label">TÊN CHỦ THẺ</label><input class="form-input" id="cardName" placeholder="NGUYEN VAN AN"><div class="form-error" id="cardNameErr"></div></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Hết Hạn</label>
+          <input class="form-input" id="cardExp" placeholder="MM/YY" maxlength="5" inputmode="numeric" oninput="fmtExp(this)">
+          <div class="form-error" id="cardExpErr" style="display:none"></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">CVV</label>
+          <input class="form-input" id="cardCvv" placeholder="123" maxlength="3" type="password" inputmode="numeric">
+          <div class="form-error" id="cardCvvErr" style="display:none"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tên Chủ Thẻ</label>
+        <input class="form-input" id="cardName" placeholder="NGUYEN VAN AN" autocomplete="cc-name">
+        <div class="form-error" id="cardNameErr" style="display:none"></div>
+      </div>
     </div>
     <div class="form-group">
-      <label class="form-label">MÃ GIẢM GIÁ</label>
-      <div style="display:flex;gap:8px">
-        <input class="form-input" id="couponInput" placeholder="Nhập mã..." style="flex:1" data-base="${total}">
-        <button class="btn-primary" style="padding:10px 14px;white-space:nowrap;font-size:12px" onclick="applyCoupon(${total})">Áp Dụng</button>
+      <label class="form-label">Mã Giảm Giá</label>
+      <div class="coupon-row">
+        <input class="form-input" id="couponInput" placeholder="Nhập mã voucher..." data-base="${total}">
+        <button class="btn-primary coupon-apply-btn" onclick="applyCoupon(${total})">Áp Dụng</button>
       </div>
     </div>
-    <button class="btn-primary" style="width:100%;justify-content:center;padding:13px;font-size:14px;margin-top:4px" onclick="processPayment(${total})">🔒 Thanh Toán</button>`;
+    <button class="btn-primary btn-submit" onclick="processPayment(${total})" style="margin-top:8px">🔒 Thanh Toán Ngay</button>`;
 }
 function selectPayMethod(el){document.querySelectorAll('.pay-method').forEach(p=>p.classList.remove('selected'));el.classList.add('selected')}
 function fmtCard(el){let v=el.value.replace(/\D/g,'').slice(0,16);el.value=v.replace(/(.{4})/g,'$1 ').trim()}
@@ -1062,13 +1473,13 @@ function processPayment(base){
   const disc=Math.floor(base*appliedDiscount/100);const total=base-disc;
   const method=document.querySelector('.pay-method.selected');const methodText=method?method.querySelector('.pm-icon').textContent:'';
   let valid=true;
-  ['cardNumErr','cardExpErr','cardCvvErr','cardNameErr'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=''});
+  ['cardNumErr','cardExpErr','cardCvvErr','cardNameErr'].forEach(id=>{const e=document.getElementById(id);if(e){e.textContent='';e.style.display='none';}});
   if(methodText==='💳'){
     const num=document.getElementById('cardNum').value.replace(/\s/g,'');const exp=document.getElementById('cardExp').value;const cvv=document.getElementById('cardCvv').value;const name=document.getElementById('cardName').value;
-    if(num.length<16){document.getElementById('cardNumErr').textContent='Số thẻ không hợp lệ';valid=false;}
-    if(!/^\d{2}\/\d{2}$/.test(exp)){document.getElementById('cardExpErr').textContent='Ngày không hợp lệ';valid=false;}
-    if(cvv.length<3){document.getElementById('cardCvvErr').textContent='CVV không hợp lệ';valid=false;}
-    if(!name.trim()){document.getElementById('cardNameErr').textContent='Nhập tên chủ thẻ';valid=false;}
+    if(num.length<16){showErr('cardNumErr','Số thẻ không hợp lệ');valid=false;}
+    if(!/^\d{2}\/\d{2}$/.test(exp)){showErr('cardExpErr','Ngày không hợp lệ');valid=false;}
+    if(cvv.length<3){showErr('cardCvvErr','CVV không hợp lệ');valid=false;}
+    if(!name.trim()){showErr('cardNameErr','Nhập tên chủ thẻ');valid=false;}
   }
   if(!valid)return;
   const code='CNX-'+Math.random().toString(36).substring(2,8).toUpperCase();
@@ -1078,15 +1489,15 @@ function processPayment(base){
   document.getElementById('paymentBody').innerHTML=`
     <div class="success-anim">
       <div class="success-icon-big">🎉</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--gold);letter-spacing:2px;margin-bottom:4px">ĐẶT VÉ THÀNH CÔNG!</div>
-      <div style="color:var(--muted);font-size:12px;margin-bottom:16px">Vé đã lưu vào tài khoản của bạn</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--gold);letter-spacing:2px;margin-bottom:6px">ĐẶT VÉ THÀNH CÔNG!</div>
+      <div style="color:var(--muted);font-size:13px;margin-bottom:18px">Vé đã lưu vào tài khoản của bạn</div>
       <div class="ticket-code">
         <div class="ticket-code-label">MÃ VÉ CỦA BẠN</div>
         <div class="ticket-code-val">${code}</div>
         <div style="margin-top:8px;font-size:11px;color:var(--muted)">${currentMovie.title} • ${currentBookingTime} • Ghế ${selectedSeats.join(', ')}</div>
       </div>
-      <div style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:8px;padding:10px;margin-bottom:16px;font-size:12px;color:#4ade80">+${pts} điểm tích lũy đã được cộng!</div>
-      <button class="btn-primary" style="width:100%;justify-content:center" onclick="closeModal('paymentModal');updateCartBadge()">Xong ✓</button>
+      <div style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:12px;margin-bottom:18px;font-size:12px;color:#4ade80">+${pts} điểm tích lũy đã được cộng!</div>
+      <button class="btn-primary btn-submit" onclick="closeModal('paymentModal');updateCartBadge()">Xong ✓</button>
     </div>`;
   updateCartBadge();
 }
@@ -1096,7 +1507,7 @@ function openCart(){
   if(!currentUser){openAuth('login');showToast('🔒','Đăng nhập để xem vé','#f5c842');return;}
   const d=DB.getUserData(currentUser.email);const tickets=d?d.tickets:[];const body=document.getElementById('cartBody');
   if(!tickets.length){body.innerHTML=`<div style="text-align:center;padding:36px;color:var(--muted)"><div style="font-size:36px;margin-bottom:10px">🎟️</div><div>Chưa có vé nào</div><button class="btn-primary" style="margin-top:14px" onclick="closeModal('cartModal');scrollToSection('movies')">Đặt Vé Ngay</button></div>`;}
-  else{body.innerHTML=`<div class="cart-body-inner">${tickets.slice(0,5).map(t=>`<div class="cart-ticket-item"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-weight:600;font-size:13px">${t.movie}</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--gold)">${t.code}</span></div><div style="font-size:11px;color:var(--muted)">${t.date} • ${t.time} • Ghế ${t.seats}</div><div style="font-size:11px;color:var(--muted);margin-top:2px">${t.cinema}</div><div style="margin-top:8px;display:flex;justify-content:space-between"><span style="color:var(--gold);font-family:'Bebas Neue',sans-serif;font-size:16px">${t.total.toLocaleString('vi-VN')}đ</span><span style="font-size:10px;color:#4ade80">+${t.pts} pts</span></div></div>`).join('')}${tickets.length>5?`<div style="text-align:center;font-size:11px;color:var(--muted);padding:8px">và ${tickets.length-5} vé khác...</div>`:''}</div>`;}
+  else{body.innerHTML=`<div class="cart-body-inner">${tickets.slice(0,5).map(t=>`<div class="cart-ticket-item"><div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-weight:600;font-size:13px">${t.movie}</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--gold)">${t.code}</span></div><div style="font-size:11px;color:var(--muted)">${t.date} • ${t.time} • Ghế ${t.seats}</div><div style="font-size:11px;color:var(--muted);margin-top:2px">${t.cinema}</div><div style="margin-top:10px;display:flex;justify-content:space-between"><span style="color:var(--gold);font-family:'Bebas Neue',sans-serif;font-size:16px">${t.total.toLocaleString('vi-VN')}đ</span><span style="font-size:10px;color:#4ade80">+${t.pts} pts</span></div></div>`).join('')}${tickets.length>5?`<div style="text-align:center;font-size:11px;color:var(--muted);padding:8px">và ${tickets.length-5} vé khác...</div>`:''}</div>`;}
   openModal('cartModal');
 }
 
@@ -1125,14 +1536,13 @@ function seekRelative(secs){playerProgress=Math.max(0,Math.min(playerDuration,pl
 function toggleMute(){isMuted=!isMuted;document.getElementById('muteBtn').textContent=isMuted?'🔇':'🔊';document.getElementById('volSlider').value=isMuted?0:80;}
 function changeVol(el){isMuted=parseInt(el.value)===0;document.getElementById('muteBtn').textContent=isMuted?'🔇':'🔊';}
 function cycleQuality(btn){qualityIdx=(qualityIdx+1)%qualities.length;btn.textContent=qualities[qualityIdx];showToast('🎥',`Chất lượng: ${qualities[qualityIdx]}`,'#6366f1');}
-function toggleFullscreen(){const wrap=document.getElementById('playerModal');if(!document.fullscreenElement)wrap.requestFullscreen().catch(()=>{});else document.exitFullscreen();}
 function closePlayer(){clearInterval(playerInterval);isPlaying=false;document.getElementById('videoScene').classList.remove('playing');closeModal('playerModal');}
 
 function copyCoupon(code,el){navigator.clipboard?.writeText(code).catch(()=>{});el.textContent='✓ ĐÃ SAO CHÉP!';setTimeout(()=>{el.textContent='🏷 '+code;},2000);showToast('🏷️',`Đã sao chép mã "${code}"`,'#f5c842');}
 
 function openModal(id){document.getElementById(id).classList.add('open')}
 function closeModal(id){document.getElementById(id).classList.remove('open')}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')['authModal','seatModal','paymentModal','cartModal'].forEach(closeModal)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')['authModal','seatModal','paymentModal','cartModal','playerModal'].forEach(closeModal)});
 ['authModal','seatModal','paymentModal','cartModal'].forEach(id=>{
   const el=document.getElementById(id);
   if(el)el.addEventListener('click',function(e){if(e.target===this)closeModal(id)});
@@ -1150,7 +1560,6 @@ function showToast(icon,msg,color='#f5c842'){
   setTimeout(()=>{d.classList.remove('show');setTimeout(()=>d.remove(),300)},3000);
 }
 
-// Update bottom nav on scroll
 const sectionIds=['home','movies','schedule','watch','account'];
 window.addEventListener('scroll',()=>{
   sectionIds.forEach((id,i)=>{
